@@ -1,0 +1,14 @@
+# JetBrains IDE
+.idea/
+.idea_modules/
+*.iml
+*.retry
+*.ipr
+*.iws
+
+# Unused files
+*.swp
+*~
+.project
+.DS_Store
+.secret
