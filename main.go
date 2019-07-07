@@ -7,11 +7,18 @@ import (
 	"time"
 	"log"
 	"go-rest/controllers"
+	"go-rest/models"
 )
 
 func main() {
 	fmt.Println("RESTful API")
 
+	// database
+	if err := models.Initialize(); err != nil {
+		log.Fatal(err)
+	}
+
+	// server
 	router := createRouter()
 	server := &http.Server{
 		Handler: router,
@@ -20,8 +27,7 @@ func main() {
 		ReadTimeout:  15 * time.Second,
 	}
 
-	err := server.ListenAndServe()
-	if err != nil {
+	if err := server.ListenAndServe(); err != nil {
 		log.Fatal(err)
 	}
 }
