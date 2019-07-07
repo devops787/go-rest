@@ -14,9 +14,11 @@ func main() {
 	fmt.Println("RESTful API")
 
 	// database
-	if err := models.Initialize(); err != nil {
+	db, err := models.Initialize()
+	if err != nil {
 		log.Fatal(err)
 	}
+	defer db.Close()
 
 	// server
 	router := createRouter()

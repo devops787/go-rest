@@ -6,9 +6,8 @@ import (
 )
 
 type Post struct {
-	Id uint64
-	Name string
-	Email string
 	gorm.Model
+	UserId int `gorm:"index:user_id"`
+	Text string `sql:"type:text;"`
 }
 

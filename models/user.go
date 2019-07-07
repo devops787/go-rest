@@ -6,9 +6,8 @@ import (
 )
 
 type User struct {
-	Id uint64
-	Name string
-	Email string
 	gorm.Model
+	Name string `gorm:"size:32"`
+	Email string `gorm:"size:255"`
 }
 

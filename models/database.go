@@ -10,7 +10,7 @@ import (
 var database *gorm.DB
 
 // Initialize database
-func Initialize() (error) {
+func Initialize() (*gorm.DB, error) {
 	host := os.Getenv("DB_HOST")
 	port := os.Getenv("DB_PORT")
 	user := os.Getenv("DB_USER")
@@ -23,12 +23,12 @@ func Initialize() (error) {
 
 	database, err := gorm.Open("mysql", uri)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	database.AutoMigrate(&User{}, &Post{})
 
-	return nil
+	return database, nil
 }
 
 // Get database
