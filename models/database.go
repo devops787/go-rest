@@ -19,14 +19,14 @@ func Initialize() (*gorm.DB, error) {
 
 	uri := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", user, password, host, port, name)
 
-	fmt.Println(uri)
-
-	database, err := gorm.Open("mysql", uri)
+	db, err := gorm.Open("mysql", uri)
 	if err != nil {
 		return nil, err
 	}
 
-	database.AutoMigrate(&User{}, &Post{})
+	db.AutoMigrate(&User{})
+
+	database = db
 
 	return database, nil
 }
